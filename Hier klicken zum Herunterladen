@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Eurojackpot Zahlen Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        h1 { font-size: 36px; }
+        button { font-size: 18px; padding: 10px 20px; cursor: pointer; }
+        .numbers { margin-top: 30px; font-size: 24px; }
+    </style>
+</head>
+<body>
+    <h1>🎰 Eurojackpot Zahlen Generator</h1>
+    <button onclick="generateNumbers()">Neue Zahlen generieren</button>
+    <div class="numbers" id="output"></div>
+
+    <script>
+        function generateNumbers() {
+            const mainNumbers = getUniqueRandomNumbers(5, 1, 50);
+            const euroNumbers = getUniqueRandomNumbers(2, 1, 12);
+
+            document.getElementById('output').innerHTML =
+                "<strong>Hauptzahlen:</strong> " + mainNumbers.join(", ") + "<br>" +
+                "<strong>Eurozahlen:</strong> " + euroNumbers.join(", ");
+        }
+
+        function getUniqueRandomNumbers(count, min, max) {
+            let numbers = new Set();
+            while (numbers.size < count) {
+                numbers.add(Math.floor(Math.random() * (max - min + 1)) + min);
+            }
+            return Array.from(numbers).sort((a, b) => a - b);
+        }
+    </script>
+</body>
+</html>
